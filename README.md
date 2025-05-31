@@ -1,34 +1,38 @@
-# 📊 Walmart Sales Analytics Dashboard
+# Walmart Sales Analytics Dashboard
 
-A comprehensive data analytics dashboard for Walmart sales data, built with Streamlit. This project provides interactive visualizations, business insights, and data analysis capabilities for Walmart sales data.
+A comprehensive, industry-grade analytics dashboard for Walmart sales data analysis, built with Streamlit and modern Python practices.
 
-## 🌟 Features
+## 🚀 Features
 
-- **Interactive Dashboard**: User-friendly interface with multiple analysis pages
-- **Data Analysis**:
-  - Sales trends and patterns
-  - Product performance metrics
-  - Customer behavior insights
-  - Payment method analysis
-- **Visualizations**:
-  - Interactive charts and graphs
-  - Customizable date ranges
-  - Product category analysis
-  - Customer segmentation
-- **Data Management**:
-  - CSV file upload
-  - Data cleaning and preprocessing
-  - Database integration (MySQL)
-  - Export capabilities
+- **Interactive Dashboard**: Real-time data visualization and analysis
+- **Data Processing**: Automated data cleaning, validation, and transformation
+- **Advanced Analytics**: Sales trends, product performance, and customer insights
+- **Database Integration**: Secure MySQL database integration
+- **Export Capabilities**: Export reports in multiple formats (CSV, Excel, PDF)
+- **Security**: Secure authentication and data handling
+- **Monitoring**: Built-in logging and performance monitoring
+- **Scalability**: Designed for handling large datasets efficiently
 
-## 🚀 Getting Started
+## 🛠️ Technology Stack
 
-### Prerequisites
+- **Frontend**: Streamlit
+- **Data Processing**: Pandas, NumPy
+- **Visualization**: Plotly
+- **Database**: MySQL, SQLAlchemy
+- **Validation**: Pydantic, Great Expectations
+- **Security**: Python-Jose, bcrypt
+- **Monitoring**: Loguru, Prometheus
+- **Testing**: Pytest
+- **Code Quality**: Black, Flake8, MyPy
 
-- Python 3.8+
-- pip (Python package installer)
+## 📋 Prerequisites
 
-### Installation
+- Python 3.9+
+- MySQL Server
+- Redis (for caching)
+- Git
+
+## 🚀 Installation
 
 1. Clone the repository:
    ```bash
@@ -39,110 +43,120 @@ A comprehensive data analytics dashboard for Walmart sales data, built with Stre
 2. Create and activate a virtual environment:
    ```bash
    python -m venv venv
-   # On Windows
-   .\venv\Scripts\activate
-   # On macOS/Linux
-   source venv/bin/activate
+   source venv/bin/activate  # On Windows: venv\Scripts\activate
    ```
 
-3. Install required packages:
+3. Install dependencies:
    ```bash
-   pip install -r requirements.txt
+   # For development
+   pip install -r requirements/dev.txt
+
+   # For production
+   pip install -r requirements/prod.txt
    ```
 
-### Running the Application
-
-1. Start the Streamlit app:
+4. Set up environment variables:
    ```bash
-   streamlit run app.py
+   cp .env.example .env
+   # Edit .env with your configuration
    ```
 
-2. Open your web browser and navigate to:
+5. Initialize the database:
+   ```bash
+   python scripts/init_db.py
    ```
-   http://localhost:8501
+
+## 🏃‍♂️ Running the Application
+
+### Development
+   ```bash
+   streamlit run app/main.py
    ```
 
-## 📋 Project Structure
-
-```
-walmart-sales-analytics/
-├── app.py              # Main Streamlit application
-├── requirements.txt    # Python dependencies
-├── README.md          # Project documentation
-├── Walmart.csv        # Sample data file
-└── Walmart_clean_data.csv  # Processed data file
-```
-
-## 🛠️ Technologies Used
-
-- **Streamlit**: Web application framework
-- **Pandas**: Data manipulation and analysis
-- **Plotly**: Interactive visualizations
-- **SQLAlchemy**: Database integration
-- **PyMySQL**: MySQL database connector
+### Production
+   ```bash
+   gunicorn app.main:app --workers 4 --bind 0.0.0.0:8000
+   ```
 
 ## 📊 Dashboard Pages
 
 1. **Data Overview**
-   - Key metrics
-   - Data preview
+   - Key metrics and KPIs
    - Data quality metrics
+   - Data preview
 
 2. **Sales Analysis**
    - Sales trends over time
    - Category-wise sales
-   - Date range selection
+   - Regional analysis
 
 3. **Product Analysis**
    - Product performance metrics
    - Category analysis
-   - Price-quantity relationships
+   - Price analysis
 
 4. **Customer Insights**
    - Customer type analysis
    - Payment method analysis
-   - Customer segmentation
+   - Customer behavior patterns
 
-## 💾 Data Management
+## 🧪 Testing
 
-### Data Upload
-- Upload CSV files through the web interface
-- Automatic data cleaning and preprocessing
-- Data validation and error handling
+Run tests with pytest:
+   ```bash
+   pytest tests/
+   ```
 
-### Database Integration
-- Optional MySQL database connection
-- Secure credential management
-- Data export capabilities
+Run with coverage:
+   ```bash
+   pytest --cov=app tests/
+   ```
+
+## 📝 Code Quality
+
+- Format code:
+   ```bash
+   black .
+   isort .
+   ```
+
+- Lint code:
+   ```bash
+   flake8
+   mypy .
+   ```
+
+## 📚 Documentation
+
+Generate documentation:
+   ```bash
+   mkdocs serve
+   ```
 
 ## 🔒 Security
 
-- Secure database connections
-- Password protection for database access
-- Data validation and sanitization
+- All database credentials are stored in environment variables
+- Input validation using Pydantic
+- Secure password hashing with bcrypt
+- JWT-based authentication
+- Rate limiting on API endpoints
+
+## 📈 Monitoring
+
+- Application logs in `logs/`
+- Prometheus metrics available at `/metrics`
+- Sentry integration for error tracking
 
 ## 🤝 Contributing
 
 1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+2. Create a feature branch
+3. Commit your changes
+4. Push to the branch
+5. Create a Pull Request
 
-## 📝 License
+## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 👥 Authors
 
-- Your Name - Initial work
-
-## 🙏 Acknowledgments
-
-- Walmart for the sample dataset
-- Streamlit team for the amazing framework
-- Open source community for various libraries and tools
-
-## 📞 Support
-
-For support, email your.email@example.com or open an issue in the repository.
